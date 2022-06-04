@@ -23,11 +23,17 @@ const Login = () => {
 
   const loginHandler = (e) => {
     e.preventDefault();
-    dispatch(loginUser(users));
+    const{email,password} = users;
+    if(email && password !== ''){
+      (async () => {
+        dispatch(loginUser(users));
+      })()
+    }
+    
   };
   const guestHandler = () => {
-    setUsers((form) => ({
-      ...form,
+    setUsers((users) => ({
+      ...users,
       email: "adarshbalika",
       password: "adarshBalika123",
     }));
@@ -46,7 +52,7 @@ const Login = () => {
             id="email"
             placeholder="Enter your email"
             value={users.email}
-            onChange={(e) => setUsers({ ...user, email: e.target.value })}
+            onChange={(e) => setUsers({ ...users, email: e.target.value })}
             required
           />
         </div>
@@ -59,7 +65,7 @@ const Login = () => {
             id="pass"
             placeholder="Enter your password"
             value={users.password}
-            onChange={(e) => setUsers({ ...user, password: e.target.value })}
+            onChange={(e) => setUsers({ ...users, password: e.target.value })}
             required
           />
         </div>

@@ -6,3 +6,12 @@ import axios from "axios";
           password: password
      })
  }
+
+ export const signupService = async(email,password,firstName,lastName) => {
+     return axios.post('api/auth/signup',{
+         username: email,
+         password: password,
+         firstName: firstName,
+         lastName : lastName
+     })
+ }

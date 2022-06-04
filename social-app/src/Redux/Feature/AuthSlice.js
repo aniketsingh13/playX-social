@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginServices } from "../../Service/AuthService";
+import { loginServices, signupService } from "../../Service/AuthService";
 
 const initialState = {
   token: localStorage.getItem("token") || null,
@@ -17,6 +17,21 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+
+export const signUpUser = createAsyncThunk("auth/signUpUser",
+ async({email,password,firstName,lastName},{rejectWithValue}) =>{
+   try {
+     const response = await signupService(email,password,firstName,lastName);
+     return response.data
+   } catch (error) {
+     return rejectWithValue(error.response)
+   }
+
+
+ }
+)
+
+
 
 const authSlice = createSlice({
   name: "auth",
@@ -46,7 +61,23 @@ const authSlice = createSlice({
       state.authStatus = "rejected";
       state.error = action.payload;
     },
+    [signUpUser.pending] : (state) => {
+      state.authStatus = "loading"
+    },
+    [signUpUser.fulfilled] : (state,action) => {
+      state.authStatus = "fulfilled";
+      state.token = action.payload.encodedToken;
+      state.user = action.payload.createdUser;
+      localStorage.setItem("token",state.token);
+      localStorage.setItem("user",JSON.stringify(state.user))
+    },
+    [signUpUser.rejected] : (state,action) =>{
+      state.authStatus = "error";
+      state.error = action.payload
+    }
   },
 });
 
+
+export const {logoutUser} = authSlice.actions;
 export const authReducer = authSlice.reducer;
