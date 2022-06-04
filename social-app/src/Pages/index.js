@@ -1,6 +1,8 @@
 
 
-import Landingpage from "./Landingpage/Landingpage"
+import Landingpage from "./Landingpage/Landingpage";
+import Login from "./Auth/Login/Login";
+import Signup from "./Auth/Signup/Signup";
 
 
-export {Landingpage}
+export {Landingpage,Login,Signup}
