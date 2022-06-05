@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./Signup.css";
 import { Link, useNavigate } from 'react-router-dom';
-import { signupService } from '../../../Service/AuthService';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUpUser } from '../../../Redux/Feature/AuthSlice';
 

@@ -1,0 +1,8 @@
+
+.home_navbar{
+    z-index: 1;
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    box-shadow:  0 1px 3px 0 var(--boxShadow-color);
+}
