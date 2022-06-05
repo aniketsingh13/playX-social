@@ -1,0 +1,24 @@
+
+.main_conatiner{
+    height: 100vh;
+}
+
+.landing_heading{
+    color: var(--primary-color-hover);
+}
+.landing_img{
+    width: 100%;
+    height: auto;
+    margin-left: 3rem;
+}
+.landingImg_cont{
+    width: 68%;
+}
+.landingPage_btn{
+    text-align: center;
+    background-color: var(--primary-color-hover);
+    color: var(--offwhite);
+}
+.landingPage_loginLink{
+    color: var(--primary-color-hover);
+}
