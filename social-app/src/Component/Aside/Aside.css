@@ -1,0 +1,29 @@
+.aside_container{
+    background-color: white;
+}
+.aside_content{
+    color: var(--primary-color-hover);
+}
+
+.logout_btn{
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    padding: .8rem;
+}
+.logout_btn:hover{
+    background-color: var(--offwhite);
+    border-radius: 1rem;
+}
+.link_btn:hover{
+    background-color: var(--offwhite);
+    border-radius: 1rem;
+}
+.post_btn{
+    border: none;
+    cursor: pointer;
+    color: white;
+    background-color: var(--primary-color-hover);
+    border-radius: 10px;
+}
+
