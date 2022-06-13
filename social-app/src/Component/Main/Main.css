@@ -1,0 +1,12 @@
+
+.post_Container{
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.main_container {
+    margin-left: 6rem;
+    margin-right: 6rem;
+}

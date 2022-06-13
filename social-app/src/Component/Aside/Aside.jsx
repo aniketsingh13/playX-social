@@ -13,7 +13,7 @@ const Aside = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="ml-m">
+    <div >
       <div className="aside_container flex  flex-column">
         <Link to="/home" className="link_btn">
           <div className="p-s f-m font-m flex ">
