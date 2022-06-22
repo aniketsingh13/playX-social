@@ -8,6 +8,7 @@ import { CgProfile } from "react-icons/cg";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../Redux/Feature/AuthSlice";
+import { openModal } from "../../Redux/Feature/PostModalSlice";
 
 const Aside = () => {
   const dispatch = useDispatch();
@@ -58,7 +59,7 @@ const Aside = () => {
             Logout
           </span>
         </button>
-        <button className="p-xss f-m font-m post_btn">Post</button>
+        <button className="p-xss f-m font-m post_btn" onClick={() => dispatch(openModal())}>Post</button>
       </div>
     </div>
   );

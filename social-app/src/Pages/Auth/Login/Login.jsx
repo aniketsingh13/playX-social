@@ -34,8 +34,8 @@ const Login = () => {
   const guestHandler = () => {
     setUsers((users) => ({
       ...users,
-      email: "adarshbalika",
-      password: "adarshBalika123",
+      email: "Aniket Singh",
+      password: "aniketsingh123",
     }));
   };
 

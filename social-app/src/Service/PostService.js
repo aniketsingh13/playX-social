@@ -2,7 +2,6 @@ import axios from "axios";
 
  export const getAllPostService = () => axios.get("/api/posts");
 
- export const getpostUserService = (username) => axios.get(`/api/posts/user/${username}`)
 
  export const addNewPostService = (postData,token) => 
      axios.post("/api/posts",{

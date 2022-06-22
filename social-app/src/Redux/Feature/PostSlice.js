@@ -1,12 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addNewPostService, deletePostService, editPostService, getAllPostService, getpostUserService } from "../../Service/PostService";
+import { addNewPostService, deletePostService, editPostService, getAllPostService } from "../../Service/PostService";
 
  const initialState = {
     posts: [],
-    userPosts: []
  }
 
- export const getAllPost = createAsyncThunk("posts/getAllpost",async(_,{rejectWithValue}) =>{
+ export const getAllPost = createAsyncThunk("post/getAllpost",async(_,{rejectWithValue}) =>{
      try {
          const response = await getAllPostService()
          return response.data
@@ -15,26 +14,19 @@ import { addNewPostService, deletePostService, editPostService, getAllPostServic
      }
  })
 
-export const getPostByUser = createAsyncThunk("posts/getPostByUser",async(username,{rejectWithValue}) => {
-    try {
-        const response = await getpostUserService(username)
-        return response.data
-    } catch (error) {
-        return rejectWithValue(error.response)
-    }
-})
 
-export const addNewPost = createAsyncThunk("posts/addNewPost",async(postData,{rejectWithValue}) => {
+
+export const addNewPost = createAsyncThunk("post/addNewPost",async(postData,{rejectWithValue}) => {
     try {
         const token = localStorage.getItem('token')
         const response = await addNewPostService(postData,token)
-        return response.data
+        return response.data.posts
     } catch (error) {
        return rejectWithValue(error.response)
     }
 })
 
-export const editPost = createAsyncThunk("posts/editPost",async(postData,{rejectWithValue}) => {
+export const editPost = createAsyncThunk("post/editPost",async(postData,{rejectWithValue}) => {
     try {
        const token = localStorage.getItem("token")
        const response = await editPostService(postData,token)
@@ -44,7 +36,7 @@ export const editPost = createAsyncThunk("posts/editPost",async(postData,{reject
     }
 })
 
-export const deletePost = createAsyncThunk("posts/deletePost",async(postId,{rejectWithValue,}) => {
+export const deletePost = createAsyncThunk("post/deletePost",async(postId,{rejectWithValue,}) => {
     try {
         const token = localStorage.getItem("token")
         const response = await deletePostService(postId,token)
@@ -56,7 +48,7 @@ export const deletePost = createAsyncThunk("posts/deletePost",async(postId,{reje
 
 
  const postSlice = createSlice({
-     name: "posts",
+     name: "post",
      initialState,
      reducers: {},
      extraReducers: {
@@ -71,23 +63,12 @@ export const deletePost = createAsyncThunk("posts/deletePost",async(postId,{reje
              state.postStatus = "rejected";
              state.posts = action.payload
         },
-        [getPostByUser.pending] : (state) => {
-            state.postStatus = "pending"
-        },
-        [getPostByUser.fulfilled] : (state,action) => {
-            state.postStatus = "fulfilled";
-            state.userPosts = action.payload.posts.reverse()
-        },
-        [getPostByUser.rejected] : (state,action) => {
-            state.postStatus = "rejected";
-            state.userPosts = action.payload
-        },
         [addNewPost.pending] : (state) => {
             state.postStatus = "pending"
         },
         [addNewPost.fulfilled]: (state,action) =>{
             state.postStatus = "fulfilled";
-            state.posts = action.payload.posts.reverse()
+            state.posts = action.payload.reverse()
         },
         [addNewPost.rejected] : (state,action) =>{
             state.postStatus = "rejected";
@@ -118,4 +99,4 @@ export const deletePost = createAsyncThunk("posts/deletePost",async(postId,{reje
          }
  })
 
- export default postSlice.reducer
+ export const PostReducer = postSlice.reducer

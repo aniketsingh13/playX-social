@@ -12,7 +12,7 @@ export const posts = [
     content:
       "First, solve the problem. Then, write the code.",
     likes: {
-      likeCount: 0,
+      likeCount: 2,
       likedBy: [],
       dislikedBy: [],
     },
@@ -27,7 +27,7 @@ export const posts = [
     content:
       "Simplicity is the soul of efficiency.",
     likes: {
-      likeCount: 0,
+      likeCount: 3,
       likedBy: [],
       dislikedBy: [],
     },
@@ -42,7 +42,7 @@ export const posts = [
     content:
       "Fix the cause, not the symptom",
     likes: {
-      likeCount: 0,
+      likeCount: 4,
       likedBy: [],
       dislikedBy: [],
     },
@@ -57,7 +57,7 @@ export const posts = [
     content:
       "If debugging is the process of removing bugs, then programming must be the process of putting them in",
     likes: {
-      likeCount: 0,
+      likeCount: 5,
       likedBy: [],
       dislikedBy: [],
     },
@@ -72,11 +72,11 @@ export const posts = [
     content:
       "Music touches us emotionally, where words alone can't",
     likes: {
-      likeCount: 0,
+      likeCount: 6,
       likedBy: [],
       dislikedBy: [],
     },
-    username: "Johnny Deep",
+    username: "Jhonny Deep",
     bookmark: [],
     comments: [],
     createdAt: formatDate(),
