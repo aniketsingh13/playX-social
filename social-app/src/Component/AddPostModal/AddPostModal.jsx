@@ -12,7 +12,8 @@ const AddPostModal = () => {
 
 
   const closeModalHandler = () => {
-    dispatch(closeModal())
+    dispatch(closeModal());
+    setInput("");
   }
    
   const postHandler = () => {

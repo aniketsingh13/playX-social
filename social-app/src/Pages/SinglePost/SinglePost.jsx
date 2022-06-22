@@ -51,7 +51,7 @@ const SinglePost = ({ post }) => {
         </div>
         {user.username === username && (
           <div className="flex mr-m p-xss postEditDelete">
-            <div className="mr-s" onClick={editHandler}>
+            <div className="mr-s" onClick={() =>editHandler()}>
               <FiEdit />
             </div>
             <div onClick={() => dispatch(deletePost(_id))}>
