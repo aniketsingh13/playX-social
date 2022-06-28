@@ -5,6 +5,7 @@ import Navbar from '../../Component/Navbar/Navbar';
 import Aside from '../../Component/Aside/Aside';
 import Main from '../../Component/Main/Main';
 import AddPostModal from '../../Component/AddPostModal/AddPostModal';
+import RightSidebar from '../../Component/RightSidebar/RightSidebar';
 
 
 const Home = () => {
@@ -22,7 +23,7 @@ const Home = () => {
           <AddPostModal />
         </div>
         <div className='home_right'>
-
+        <RightSidebar />
         </div>
       </div>
     </div>

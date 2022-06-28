@@ -61,7 +61,7 @@ const SinglePost = ({ post }) => {
         )}
       </div>
       <div className="body p-xss ml-m">
-        <div className="post_content">{content}</div>
+        <div className="post_content ">{content}</div>
       </div>
       <div className="post_footer p-xss ml-m flex flex-row">
         <div className="flex">
