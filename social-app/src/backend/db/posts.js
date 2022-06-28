@@ -82,4 +82,34 @@ export const posts = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
+  {
+    _id: uuid(),
+    content:
+      "Before you marry a person, you should first make them use a computer with slow Internet to see who they really are.",
+    likes: {
+      likeCount: 5,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Aniket Singh",
+    bookmark: [],
+    comments: [],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+      "Never follow anyone else’s path. Unless you’re in the woods and you’re lost and you see a path. Then by all means follow that path.",
+    likes: {
+      likeCount: 2,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Aniket Singh",
+    bookmark: [],
+    comments: [],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  }
 ];
