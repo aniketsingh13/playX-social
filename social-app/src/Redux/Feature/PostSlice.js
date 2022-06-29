@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addNewPostService, deletePostService, editPostService, getAllPostService } from "../../Service/PostService";
+import { addCommentService, addNewPostService, deleteCommentService, deletePostService, editCommentService, editPostService, getAllPostService } from "../../Service/PostService";
 
  const initialState = {
     posts: [],
@@ -46,6 +46,35 @@ export const deletePost = createAsyncThunk("post/deletePost",async(postId,{rejec
     }
 })
 
+export const addComment = createAsyncThunk("post/addComment",async({postId,commentData},{rejectWithValue}) =>{
+    try {
+        const token = localStorage.getItem("token");
+        const response = await addCommentService(postId,commentData,token);
+        return response.data
+    } catch (error) {
+        return rejectWithValue(error)
+    }
+});
+
+export const editComment = createAsyncThunk("post/editComment",async({postId,commentId,commentData},{rejectWithValue}) => {
+    try {
+        const token = localStorage.getItem("token");
+         const response = await editCommentService(postId,commentId,commentData,token);
+         return response.data;
+    } catch (error) {
+        return rejectWithValue(error)
+    }
+});
+
+export const deleteComment = createAsyncThunk("post/deleteCommnet",async({postId,commentId},{rejectWithValue}) =>{
+    try {
+        const token = localStorage.getItem("token");
+        const response = await deleteCommentService(postId,commentId,token);
+        return response.data;
+    } catch (error) {
+        return rejectWithValue(error)
+    }
+})
 
  const postSlice = createSlice({
      name: "post",
