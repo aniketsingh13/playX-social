@@ -1,5 +1,6 @@
 @import url("https://playx-ui.netlify.app/styles/main.css");
 
-root{
-  width: 100vw;
+:root{
+  box-sizing: border-box;
+  background-color: #edf2f6;
 }

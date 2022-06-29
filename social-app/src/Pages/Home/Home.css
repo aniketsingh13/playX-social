@@ -1,0 +1,23 @@
+
+.home_navbar{
+    z-index: 1;
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    box-shadow:  0 1px 3px 0 var(--boxShadow-color);
+}
+
+.home_aside{
+    flex: 1
+}
+
+.home_main{
+    flex: 3;
+}
+.home_right{
+    flex: 1;
+}
+.home_centerCont{
+    margin-left: 3rem;
+    margin-right: 2rem;
+}

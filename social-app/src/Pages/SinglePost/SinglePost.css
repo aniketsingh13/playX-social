@@ -1,0 +1,26 @@
+.singlePost_Cont{
+    background-color: white;
+    border-radius: 10px;
+}
+.header{
+    justify-content: space-between;
+}
+.proileImg{
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+}
+.profile_name{
+    color: var(--secondary-color);
+}
+.postEditDelete{
+    cursor: pointer;
+}
+.post_content{
+    line-height: 1.6;
+    font-weight: 420;
+}
+.post_footer{
+    justify-content: space-around;
+    cursor: pointer;
+}

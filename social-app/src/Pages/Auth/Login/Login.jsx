@@ -34,13 +34,13 @@ const Login = () => {
   const guestHandler = () => {
     setUsers((users) => ({
       ...users,
-      email: "adarshbalika",
-      password: "adarshBalika123",
+      email: "Aniket Singh",
+      password: "aniketsingh123",
     }));
   };
 
   return (
-    <div className="flex flex-center mt-xl">
+    <div className="flex flex-center mt-xl ">
       <form className="login-form  pt-l" onSubmit={loginHandler}>
         <div className="f-m font-xxl mb-s">Login</div>
         <div className=" mt-l ">

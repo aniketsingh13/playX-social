@@ -1,0 +1,13 @@
+
+.Nabar-cont{
+    justify-content: space-between;
+    background-color: white;
+}
+.profile_heading{
+    color: var(--primary-color-hover);
+}
+.prof_img{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}

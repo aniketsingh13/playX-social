@@ -1,0 +1,12 @@
+.followContainer{
+  background-color: white;
+ text-align: center;
+}
+.follow_btn{
+    cursor: pointer;
+   border-radius: 10px;
+   background-color: var(--primary-color-hover);
+   border: 1px solid var(--border-color);
+   width: 3rem;
+   height: 2rem;
+}
