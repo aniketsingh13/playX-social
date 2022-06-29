@@ -124,8 +124,41 @@ export const deleteComment = createAsyncThunk("post/deleteCommnet",async({postId
         [deletePost.rejected]: (state,action) => {
             state.postStatus = "rejected";
             state.posts = action.payload
+        },
+        [addComment.pending] : (state) => {
+            state.postStatus = "pending"
+        },
+        [addComment.fulfilled] : (state,action) =>{
+            state.postStatus = "fulfilled";
+            state.posts = action.payload.posts
+        },
+        [addComment.rejected] : (state,action) => {
+            state.postStatus = "rejected";
+            state.posts = action.payload
+        },
+        [editComment.pending] : (state) => {
+            state.postStatus = "pending"
+        },
+        [editComment.fulfilled] : (state,action) => {
+            state.postStatus = "fulfilled";
+            state.posts = action.payload.posts
+        },
+        [editComment.rejected] : (state,action) => {
+            state.postStatus = "rejected";
+            state.posts = action.payload
+        },
+        [deleteComment.pending] : (state) => {
+            state.postStatus = "pending"
+        },
+        [deleteComment.fulfilled] : (state,action) => {
+            state.postStatus = "fulfilled";
+            state.posts = action.payload.posts
+        },
+        [deleteComment.rejected] : (state,action) => {
+            state.postStatus = "rejected";
+            state.posts = action.payload
         }
-         }
+    }
  })
 
  export const PostReducer = postSlice.reducer
