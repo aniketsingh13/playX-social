@@ -5,8 +5,9 @@ import { MdAddCircle } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../../Redux/Feature/PostModalSlice";
 import { getAllPost } from "../../Redux/Feature/PostSlice";
-import SinglePost from "../../Pages/SinglePost/SinglePost";
+
 import { useState } from "react";
+import SinglePost from "../SinglePost/SinglePost";
 
 const Main = () => {
   const dispatch = useDispatch();
