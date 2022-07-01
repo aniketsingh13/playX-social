@@ -21,6 +21,6 @@
     font-weight: 420;
 }
 .post_footer{
-    justify-content: space-around;
     cursor: pointer;
+    justify-content: space-around;
 }

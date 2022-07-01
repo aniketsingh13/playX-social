@@ -46,31 +46,31 @@ export const deletePost = createAsyncThunk("post/deletePost",async(postId,{rejec
     }
 })
 
-export const addComment = createAsyncThunk("post/addComment",async({postId,commentData},{rejectWithValue}) =>{
+export const addComment = createAsyncThunk("post/addComment",async({postId,commentData,token},{rejectWithValue}) =>{
     try {
-        const token = localStorage.getItem("token");
-        const response = await addCommentService(postId,commentData,token);
-        return response.data
+        const {data} = await addCommentService(postId,commentData,token);
+        const {comments} = data;
+        return {comments,postId}
     } catch (error) {
         return rejectWithValue(error)
     }
 });
 
-export const editComment = createAsyncThunk("post/editComment",async({postId,commentId,commentData},{rejectWithValue}) => {
+export const editComment = createAsyncThunk("post/editComment",async({postId,commentId,commentData,token},{rejectWithValue}) => {
     try {
-        const token = localStorage.getItem("token");
-         const response = await editCommentService(postId,commentId,commentData,token);
-         return response.data;
+         const data = await editCommentService(postId,commentId,commentData,token);
+         const {comments} = data;
+         return {comments,postId}
     } catch (error) {
         return rejectWithValue(error)
     }
 });
 
-export const deleteComment = createAsyncThunk("post/deleteCommnet",async({postId,commentId},{rejectWithValue}) =>{
+export const deleteComment = createAsyncThunk("post/deleteCommnet",async({postId,commentId,token},{rejectWithValue}) =>{
     try {
-        const token = localStorage.getItem("token");
-        const response = await deleteCommentService(postId,commentId,token);
-        return response.data;
+        const {data} = await deleteCommentService(postId,commentId,token);
+       const {comments} = data;
+       return {comments,postId}
     } catch (error) {
         return rejectWithValue(error)
     }

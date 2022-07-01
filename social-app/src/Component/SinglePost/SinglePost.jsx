@@ -1,24 +1,26 @@
-import React from "react";
+import React  from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./SinglePost.css";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { BiLike } from "react-icons/bi";
-import { FaRegComment } from "react-icons/fa";
 import { BsBookmark } from "react-icons/bs";
+import {AiOutlineComment} from "react-icons/ai"
 import { openModal } from "../../Redux/Feature/PostModalSlice";
-import { deletePost } from "../../Redux/Feature/PostSlice";
+import {  deletePost } from "../../Redux/Feature/PostSlice";
+
 
 const SinglePost = ({ post }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  
   const {
     _id,
     likes: { likeCount },
     username,
     content,
     createdAt,
-  } = post;
+  } = post ;
 
   const date = new Date(createdAt);
   const [month, day, year, hour, minutes] = [
@@ -32,6 +34,8 @@ const SinglePost = ({ post }) => {
   const editHandler = () => {
     dispatch(openModal(post));
   };
+
+ 
 
   return (
     <div className="singlePost_Cont mb-l">
@@ -51,7 +55,7 @@ const SinglePost = ({ post }) => {
         </div>
         {user.username === username && (
           <div className="flex mr-m p-xss postEditDelete">
-            <div className="mr-s" onClick={() =>editHandler()}>
+            <div className="mr-s" onClick={() => editHandler()}>
               <FiEdit />
             </div>
             <div onClick={() => dispatch(deletePost(_id))}>
@@ -63,17 +67,18 @@ const SinglePost = ({ post }) => {
       <div className="body p-xss ml-m">
         <div className="post_content ">{content}</div>
       </div>
-      <div className="post_footer p-xss ml-m flex flex-row">
+      <div className="post_footer p-xss  flex flex-row">
         <div className="flex">
           <BiLike /> {likeCount}
         </div>
-        <div className="flex">
-          <FaRegComment />
+        <div>
+          <AiOutlineComment />
         </div>
-        <div className="flex">
+        <div >
           <BsBookmark />{" "}
         </div>
       </div>
+      
     </div>
   );
 };

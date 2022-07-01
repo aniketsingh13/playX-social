@@ -6,5 +6,6 @@ import Main from "./Main/Main";
 import AddPostModal from "./AddPostModal/AddPostModal";
 import RightSidebar from "./RightSidebar/RightSidebar";
 import SinglePost from "./SinglePost/SinglePost";
+import Comment from "./Comment/Comment";
 
-export {Navbar,RequireAuth,Aside,Main,AddPostModal,RightSidebar,SinglePost}
+export {Navbar,RequireAuth,Aside,Main,AddPostModal,RightSidebar,SinglePost,Comment}
