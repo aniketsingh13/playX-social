@@ -1,6 +1,6 @@
 import React from 'react'
 import {Routes,Route} from "react-router-dom";
-import {  Landingpage, Login } from '../Pages';
+import {  Landingpage, Login, SinglePage } from '../Pages';
 import Mockman from "mockman-js";
 import Signup from '../Pages/Auth/Signup/Signup';
 import Home from '../Pages/Home/Home';

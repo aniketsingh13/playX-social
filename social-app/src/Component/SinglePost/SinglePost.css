@@ -22,5 +22,25 @@
 }
 .post_footer{
     cursor: pointer;
-    justify-content: space-around;
+}
+.SinglePost_commentImg{
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+}
+.SinglePostcomment_container{
+  width: 90%;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+}
+.comment_input{
+    border: none;
+    outline: none;
+    width: 90%;
+}
+.singlePost_commentBtn{
+  border: none;
+  color: var(--primary-color-hover);
+  background-color: white;
+  cursor: pointer;
 }

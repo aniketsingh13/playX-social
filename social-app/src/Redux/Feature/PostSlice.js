@@ -5,10 +5,11 @@ import { addCommentService, addNewPostService, deleteCommentService, deletePostS
     posts: [],
  }
 
- export const getAllPost = createAsyncThunk("post/getAllpost",async(_,{rejectWithValue}) =>{
+ export const getAllPost = createAsyncThunk("posts/getAllpost",async(_,{rejectWithValue}) =>{
      try {
-         const response = await getAllPostService()
-         return response.data
+         const  {data} = await getAllPostService();
+         const {posts}  = data;
+         return posts;
      } catch (error) {
          return rejectWithValue(error.response)
      }
@@ -16,7 +17,7 @@ import { addCommentService, addNewPostService, deleteCommentService, deletePostS
 
 
 
-export const addNewPost = createAsyncThunk("post/addNewPost",async(postData,{rejectWithValue}) => {
+export const addNewPost = createAsyncThunk("posts/addNewPost",async(postData,{rejectWithValue}) => {
     try {
         const token = localStorage.getItem('token')
         const response = await addNewPostService(postData,token)
@@ -26,7 +27,7 @@ export const addNewPost = createAsyncThunk("post/addNewPost",async(postData,{rej
     }
 })
 
-export const editPost = createAsyncThunk("post/editPost",async(postData,{rejectWithValue}) => {
+export const editPost = createAsyncThunk("posts/editPost",async(postData,{rejectWithValue}) => {
     try {
        const token = localStorage.getItem("token")
        const response = await editPostService(postData,token)
@@ -36,7 +37,7 @@ export const editPost = createAsyncThunk("post/editPost",async(postData,{rejectW
     }
 })
 
-export const deletePost = createAsyncThunk("post/deletePost",async(postId,{rejectWithValue,}) => {
+export const deletePost = createAsyncThunk("posts/deletePost",async(postId,{rejectWithValue,}) => {
     try {
         const token = localStorage.getItem("token")
         const response = await deletePostService(postId,token)
@@ -46,38 +47,39 @@ export const deletePost = createAsyncThunk("post/deletePost",async(postId,{rejec
     }
 })
 
-export const addComment = createAsyncThunk("post/addComment",async({postId,commentData,token},{rejectWithValue}) =>{
+export const addComment = createAsyncThunk("posts/addComment",async({postId,commentData},{rejectWithValue}) =>{
     try {
-        const {data} = await addCommentService(postId,commentData,token);
-        const {comments} = data;
-        return {comments,postId}
+        const token = localStorage.getItem("token");
+        const response = await addCommentService(postId,commentData,token);
+        return response.data
     } catch (error) {
         return rejectWithValue(error)
     }
 });
 
-export const editComment = createAsyncThunk("post/editComment",async({postId,commentId,commentData,token},{rejectWithValue}) => {
+export const editComment = createAsyncThunk("posts/editComment",async({postId,commentId,commentData},{rejectWithValue}) => {
     try {
-         const data = await editCommentService(postId,commentId,commentData,token);
-         const {comments} = data;
-         return {comments,postId}
+        const token = localStorage.getItem("token")
+         const response = await editCommentService(postId,commentId,commentData,token);
+         console.log(response.data)
+         return response.data
     } catch (error) {
         return rejectWithValue(error)
     }
 });
 
-export const deleteComment = createAsyncThunk("post/deleteCommnet",async({postId,commentId,token},{rejectWithValue}) =>{
+export const deleteComment = createAsyncThunk("posts/deleteCommnet",async({postId,commentId},{rejectWithValue}) =>{
     try {
-        const {data} = await deleteCommentService(postId,commentId,token);
-       const {comments} = data;
-       return {comments,postId}
+        const token = localStorage.getItem("token");
+        const response = await deleteCommentService(postId,commentId,token);
+           return response.data
     } catch (error) {
         return rejectWithValue(error)
     }
 })
 
  const postSlice = createSlice({
-     name: "post",
+     name: "posts",
      initialState,
      reducers: {},
      extraReducers: {
@@ -86,12 +88,8 @@ export const deleteComment = createAsyncThunk("post/deleteCommnet",async({postId
          },
          [getAllPost.fulfilled] : (state,action) => {
             state.postStatus = "fulfilled";
-            state.posts = action.payload.posts.reverse()
+            state.posts = action.payload.reverse()
          },
-         [getAllPost.rejected] : (state,action) => {
-             state.postStatus = "rejected";
-             state.posts = action.payload
-        },
         [addNewPost.pending] : (state) => {
             state.postStatus = "pending"
         },
@@ -126,9 +124,9 @@ export const deleteComment = createAsyncThunk("post/deleteCommnet",async({postId
             state.posts = action.payload
         },
         [addComment.pending] : (state) => {
-            state.postStatus = "pending"
+         state.postStatus = "pending"
         },
-        [addComment.fulfilled] : (state,action) =>{
+        [addComment.fulfilled] : (state,action) => {
             state.postStatus = "fulfilled";
             state.posts = action.payload.posts
         },
@@ -144,15 +142,15 @@ export const deleteComment = createAsyncThunk("post/deleteCommnet",async({postId
             state.posts = action.payload.posts
         },
         [editComment.rejected] : (state,action) => {
-            state.postStatus = "rejected";
+            state.postStatus =  "rejected";
             state.posts = action.payload
         },
         [deleteComment.pending] : (state) => {
             state.postStatus = "pending"
         },
         [deleteComment.fulfilled] : (state,action) => {
-            state.postStatus = "fulfilled";
-            state.posts = action.payload.posts
+             state.postStatus = "fulfilled";
+             state.posts = action.payload.posts
         },
         [deleteComment.rejected] : (state,action) => {
             state.postStatus = "rejected";

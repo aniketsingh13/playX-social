@@ -1,26 +1,28 @@
-import React  from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./SinglePost.css";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { BiLike } from "react-icons/bi";
 import { BsBookmark } from "react-icons/bs";
-import {AiOutlineComment} from "react-icons/ai"
 import { openModal } from "../../Redux/Feature/PostModalSlice";
-import {  deletePost } from "../../Redux/Feature/PostSlice";
-
+import { addComment, deletePost } from "../../Redux/Feature/PostSlice";
+import { useState } from "react";
+import Comment from "../Comment/Comment";
 
 const SinglePost = ({ post }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  
+  const [comment, setComment] = useState("");
+
   const {
     _id,
     likes: { likeCount },
     username,
     content,
     createdAt,
-  } = post ;
+    comments,
+  } = post;
 
   const date = new Date(createdAt);
   const [month, day, year, hour, minutes] = [
@@ -35,7 +37,10 @@ const SinglePost = ({ post }) => {
     dispatch(openModal(post));
   };
 
- 
+  const commentHandler = () => {
+    dispatch(addComment({ postId: _id, commentData: comment }));
+    setComment("");
+  };
 
   return (
     <div className="singlePost_Cont mb-l">
@@ -67,18 +72,45 @@ const SinglePost = ({ post }) => {
       <div className="body p-xss ml-m">
         <div className="post_content ">{content}</div>
       </div>
-      <div className="post_footer p-xss  flex flex-row">
-        <div className="flex">
+      <div className="post_footer p-xss  flex flex-row ml-l">
+        <div className="flex ">
           <BiLike /> {likeCount}
         </div>
-        <div>
-          <AiOutlineComment />
-        </div>
-        <div >
+        <div className="ml-m">
           <BsBookmark />{" "}
         </div>
       </div>
-      
+      <div className="mt-s ml-m mr-m ">
+        <div className="flex">
+          <img
+            className="SinglePost_commentImg"
+            src={`https://ui-avatars.com/api/name=${user.username}?background=1d9af1&color=fff`}
+            alt="profile-avatar"
+          />
+          <div className="p-xss SinglePostcomment_container ml-s mb-l">
+            <input
+              type="text"
+              placeholder="write your comment"
+              className="comment_input"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
+            <button
+              className="singlePost_commentBtn"
+              onClick={() => commentHandler()}
+              disabled={comment.trim().length < 1 ? true : false}
+            >
+              Post
+            </button>
+          </div>
+        </div>
+        <div>
+          {comments?.length > 0 &&
+            comments?.map((comment) => (
+              <Comment key={comment._id} comment={comment} postId={_id} />
+            ))}
+        </div>
+      </div>
     </div>
   );
 };

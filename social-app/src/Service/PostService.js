@@ -63,11 +63,13 @@ export const editCommentService = (postId, commentId, commentData, token) =>
 
 export const deleteCommentService = (postId, commentId, token) =>
   axios.post(
-    `/api/comments/delete/${postId}/${commentId}`,
-    {},
-    {
+    `/api/comments/delete/${postId}/${commentId}`,{},{
       headers: {
         authorization: token,
       },
     }
   );
+
+  export const getSinglePostService =(postId) => {
+    return axios.get(`/api/posts/${postId}`)
+  }
