@@ -4,25 +4,17 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BiEdit } from "react-icons/bi";
 import { RiDeleteBin7Line } from "react-icons/ri";
-import { deleteComment, editComment } from "../../Redux/Feature/PostSlice";
-import {TiTickOutline} from "react-icons/ti";
- import {AiOutlineClose} from "react-icons/ai"
+import { deleteComment } from "../../Redux/Feature/PostSlice";
 
 const Comment = ({ comment, postId }) => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.allUsers);
   const [inputComment, setInputComment] = useState(comment.text);
-  const [isEdit, setIsEdit] = useState(false);
 
   const userInfo =
     users &&
     users?.find((commentUser) => comment.username === commentUser.username);
-
-    const commentEditHandler =() => {
-      dispatch(editComment({postId: postId,commentId: comment._id, commentData: inputComment}))
-      setIsEdit(false);
-    }
 
   return (
     <div className="mb-l">
@@ -37,9 +29,6 @@ const Comment = ({ comment, postId }) => {
             <div className="f-ss font-l ">{`${userInfo.firstName} ${userInfo.lastName}`}</div>
             {comment.username === user.username && (
               <div className="comment_editDeleteContainer">
-                <span className="mr-s" onClick={() => setIsEdit(!isEdit)}>
-                  <BiEdit />
-                </span>
                 <span
                   onClick={() =>
                     dispatch(
@@ -52,14 +41,7 @@ const Comment = ({ comment, postId }) => {
               </div>
             )}
           </div>
-          {isEdit ? (<form className="flex " onSubmit={() => commentEditHandler()} >
-             <input type="text"  className="editComment_input ml-s font-m f-ss"
-             value={inputComment}
-             onChange={(e) => setInputComment(e.target.value)}
-             />
-             <AiOutlineClose className="comment_wrightWrong" onClick={() => setIsEdit(false)}/>
-            <TiTickOutline className="ml-s comment_wrightWrong"  onClick={() => commentEditHandler()} />
-          </form>) : (<div className="ml-s font-m f-ss">{comment.text}</div>)}
+          <div className="ml-s font-m f-ss">{comment.text}</div>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addCommentService, addNewPostService, deleteCommentService, deletePostService, editCommentService, editPostService, getAllPostService } from "../../Service/PostService";
+import { addCommentService, addNewPostService, deleteCommentService, deletePostService,  editPostService, getAllPostService } from "../../Service/PostService";
 
  const initialState = {
     posts: [],
@@ -57,16 +57,7 @@ export const addComment = createAsyncThunk("posts/addComment",async({postId,comm
     }
 });
 
-export const editComment = createAsyncThunk("posts/editComment",async({postId,commentId,commentData},{rejectWithValue}) => {
-    try {
-        const token = localStorage.getItem("token")
-         const response = await editCommentService(postId,commentId,commentData,token);
-         console.log(response.data)
-         return response.data
-    } catch (error) {
-        return rejectWithValue(error)
-    }
-});
+
 
 export const deleteComment = createAsyncThunk("posts/deleteCommnet",async({postId,commentId},{rejectWithValue}) =>{
     try {
@@ -132,17 +123,6 @@ export const deleteComment = createAsyncThunk("posts/deleteCommnet",async({postI
         },
         [addComment.rejected] : (state,action) => {
             state.postStatus = "rejected";
-            state.posts = action.payload
-        },
-        [editComment.pending] : (state) => {
-            state.postStatus = "pending"
-        },
-        [editComment.fulfilled] : (state,action) => {
-            state.postStatus = "fulfilled";
-            state.posts = action.payload.posts
-        },
-        [editComment.rejected] : (state,action) => {
-            state.postStatus =  "rejected";
             state.posts = action.payload
         },
         [deleteComment.pending] : (state) => {
