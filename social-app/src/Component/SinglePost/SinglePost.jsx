@@ -6,18 +6,24 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { BiLike } from "react-icons/bi";
 import { BsBookmark } from "react-icons/bs";
 import { openModal } from "../../Redux/Feature/PostModalSlice";
-import { addComment, deletePost } from "../../Redux/Feature/PostSlice";
+import {
+  addComment,
+  deletePost,
+  disLikePost,
+  likePost,
+} from "../../Redux/Feature/PostSlice";
 import { useState } from "react";
 import Comment from "../Comment/Comment";
+import { AiFillLike } from "react-icons/ai";
 
 const SinglePost = ({ post }) => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const { user, token } = useSelector((state) => state.auth);
   const [comment, setComment] = useState("");
 
   const {
     _id,
-    likes: { likeCount },
+    likes: { likeCount, likedBy },
     username,
     content,
     createdAt,
@@ -40,6 +46,25 @@ const SinglePost = ({ post }) => {
   const commentHandler = () => {
     dispatch(addComment({ postId: _id, commentData: comment }));
     setComment("");
+  };
+
+  const userLikes = () => {
+    return likedBy.find((userLiked) => user.username === userLiked.username)
+      ? true
+      : false;
+  };
+
+  const likeDislikeHandler = async (e) => {
+    e.preventDefault();
+    try {
+      if (userLikes()) {
+        const response = await dispatch(disLikePost({ postId: _id, token }));
+      } else {
+        const response = await dispatch(likePost({ postId: _id, token }));
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -73,9 +98,18 @@ const SinglePost = ({ post }) => {
         <div className="post_content ">{content}</div>
       </div>
       <div className="post_footer p-xss  flex flex-row ml-l">
-        <div className="flex ">
-          <BiLike /> {likeCount}
-        </div>
+        {userLikes() ? (
+          <div onClick={likeDislikeHandler}>
+            <AiFillLike />
+          </div>
+        ) : (
+          <div onClick={likeDislikeHandler}>
+            <BiLike />
+          </div>
+        )}
+        <span className="ml-s" style={{ color: "black" }}>
+          {likeCount > 0 ? likeCount : 0}
+        </span>
         <div className="ml-m">
           <BsBookmark />{" "}
         </div>

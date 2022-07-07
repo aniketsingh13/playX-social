@@ -59,6 +59,14 @@ export const deleteCommentService = (postId, commentId, token) =>
     }
   );
 
-  export const getSinglePostService =(postId) => {
-    return axios.get(`/api/posts/${postId}`)
+  export const likeService = (postId,token) => {
+     return axios.post(`/api/posts/like/${postId}`,{},{headers: {
+      authorization: token
+     }})
+  }
+
+  export const disLikeService = (postId,token) => {
+   return axios.post(`/api/posts/dislike/${postId}`,{},{
+    headers : {authorization : token}
+   })
   }
