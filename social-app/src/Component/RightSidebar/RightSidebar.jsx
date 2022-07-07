@@ -71,7 +71,7 @@ const RightSidebar = () => {
                 {followUser.firstName} {followUser.lastName}
               </p>
               <button
-                className="follow_btn"
+                className="follow_btn "
                 onClick={() => followHandler(followUser._id)}
               >
                 follow

@@ -1,0 +1,21 @@
+.comment_content{
+    width: 90%;
+    height: 3.3rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+}
+.comment_top{
+    justify-content: space-between;
+}
+.comment_editDeleteContainer{
+    cursor: pointer;
+}
+.editComment_input{
+    border: none;
+    outline: none;
+    width: 85%;
+    border-bottom: 1px solid var(--border-color); 
+}
+.comment_wrightWrong{
+    cursor: pointer;
+}

@@ -1,14 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addNewPostService, deletePostService, editPostService, getAllPostService } from "../../Service/PostService";
+import { addCommentService, addNewPostService, deleteCommentService, deletePostService,  editPostService, getAllPostService } from "../../Service/PostService";
 
  const initialState = {
     posts: [],
  }
 
- export const getAllPost = createAsyncThunk("post/getAllpost",async(_,{rejectWithValue}) =>{
+ export const getAllPost = createAsyncThunk("posts/getAllpost",async(_,{rejectWithValue}) =>{
      try {
-         const response = await getAllPostService()
-         return response.data
+         const  {data} = await getAllPostService();
+         const {posts}  = data;
+         return posts;
      } catch (error) {
          return rejectWithValue(error.response)
      }
@@ -16,7 +17,7 @@ import { addNewPostService, deletePostService, editPostService, getAllPostServic
 
 
 
-export const addNewPost = createAsyncThunk("post/addNewPost",async(postData,{rejectWithValue}) => {
+export const addNewPost = createAsyncThunk("posts/addNewPost",async(postData,{rejectWithValue}) => {
     try {
         const token = localStorage.getItem('token')
         const response = await addNewPostService(postData,token)
@@ -26,7 +27,7 @@ export const addNewPost = createAsyncThunk("post/addNewPost",async(postData,{rej
     }
 })
 
-export const editPost = createAsyncThunk("post/editPost",async(postData,{rejectWithValue}) => {
+export const editPost = createAsyncThunk("posts/editPost",async(postData,{rejectWithValue}) => {
     try {
        const token = localStorage.getItem("token")
        const response = await editPostService(postData,token)
@@ -36,7 +37,7 @@ export const editPost = createAsyncThunk("post/editPost",async(postData,{rejectW
     }
 })
 
-export const deletePost = createAsyncThunk("post/deletePost",async(postId,{rejectWithValue,}) => {
+export const deletePost = createAsyncThunk("posts/deletePost",async(postId,{rejectWithValue,}) => {
     try {
         const token = localStorage.getItem("token")
         const response = await deletePostService(postId,token)
@@ -46,9 +47,30 @@ export const deletePost = createAsyncThunk("post/deletePost",async(postId,{rejec
     }
 })
 
+export const addComment = createAsyncThunk("posts/addComment",async({postId,commentData},{rejectWithValue}) =>{
+    try {
+        const token = localStorage.getItem("token");
+        const response = await addCommentService(postId,commentData,token);
+        return response.data
+    } catch (error) {
+        return rejectWithValue(error)
+    }
+});
+
+
+
+export const deleteComment = createAsyncThunk("posts/deleteCommnet",async({postId,commentId},{rejectWithValue}) =>{
+    try {
+        const token = localStorage.getItem("token");
+        const response = await deleteCommentService(postId,commentId,token);
+           return response.data
+    } catch (error) {
+        return rejectWithValue(error)
+    }
+})
 
  const postSlice = createSlice({
-     name: "post",
+     name: "posts",
      initialState,
      reducers: {},
      extraReducers: {
@@ -57,12 +79,8 @@ export const deletePost = createAsyncThunk("post/deletePost",async(postId,{rejec
          },
          [getAllPost.fulfilled] : (state,action) => {
             state.postStatus = "fulfilled";
-            state.posts = action.payload.posts.reverse()
+            state.posts = action.payload.reverse()
          },
-         [getAllPost.rejected] : (state,action) => {
-             state.postStatus = "rejected";
-             state.posts = action.payload
-        },
         [addNewPost.pending] : (state) => {
             state.postStatus = "pending"
         },
@@ -95,8 +113,30 @@ export const deletePost = createAsyncThunk("post/deletePost",async(postId,{rejec
         [deletePost.rejected]: (state,action) => {
             state.postStatus = "rejected";
             state.posts = action.payload
+        },
+        [addComment.pending] : (state) => {
+         state.postStatus = "pending"
+        },
+        [addComment.fulfilled] : (state,action) => {
+            state.postStatus = "fulfilled";
+            state.posts = action.payload.posts
+        },
+        [addComment.rejected] : (state,action) => {
+            state.postStatus = "rejected";
+            state.posts = action.payload
+        },
+        [deleteComment.pending] : (state) => {
+            state.postStatus = "pending"
+        },
+        [deleteComment.fulfilled] : (state,action) => {
+             state.postStatus = "fulfilled";
+             state.posts = action.payload.posts
+        },
+        [deleteComment.rejected] : (state,action) => {
+            state.postStatus = "rejected";
+            state.posts = action.payload
         }
-         }
+    }
  })
 
  export const PostReducer = postSlice.reducer

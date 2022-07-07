@@ -5,37 +5,38 @@ import { MdAddCircle } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../../Redux/Feature/PostModalSlice";
 import { getAllPost } from "../../Redux/Feature/PostSlice";
-import SinglePost from "../../Pages/SinglePost/SinglePost";
+
 import { useState } from "react";
+import SinglePost from "../SinglePost/SinglePost";
 
 const Main = () => {
   const dispatch = useDispatch();
   const { user, token } = useSelector((state) => state.auth);
-  const { posts } = useSelector((state) => state.post);
+  const { posts} = useSelector((state) => state.posts);
   const [followPost, setFollowPost] = useState([]);
 
   const openModalHandler = () => {
     dispatch(openModal());
   };
-
+  
   useEffect(() => {
     (async () => {
       try {
         const response = await dispatch(getAllPost());
-        if (response.error) {
-          throw new Error("Can't fetch posts.");
-        }
       } catch (error) {
         console.log(error);
       }
     })();
-    const filterFollowing = posts.filter(
+    const filterFollowing = posts?.filter(
       (post) =>
         user.username === post.username ||
         user.following.find((account) => account.username === post.username)
-    );
+     );
     setFollowPost(filterFollowing);
-  }, [token, posts]);
+  }, [posts,token]);
+
+ 
+
 
   return (
     <div className="main_container ">
@@ -54,8 +55,8 @@ const Main = () => {
         </div>
       </div>
       <div className="mt-l">
-        {followPost.length !== 0 ? (
-          followPost.map((post) => <SinglePost key={post._id} post={post} />)
+        {followPost?.length > 0 ? (
+          followPost?.map((post) => <SinglePost key={post._id} post={post} />)
         ) : (
           <></>
         )}

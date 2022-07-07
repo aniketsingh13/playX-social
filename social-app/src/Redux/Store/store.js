@@ -8,7 +8,7 @@ import { allUsersReducer } from "../Feature/userSlice";
 export const store = configureStore({
     reducer: {
         auth: authReducer,
-        post: PostReducer,
+        posts: PostReducer,
         postModal: postModalRedcer,
         allUsers: allUsersReducer
     }
