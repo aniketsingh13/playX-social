@@ -32,7 +32,7 @@ const Aside = () => {
             <span className="aside_content ml-s">Explore</span>
           </div>
         </Link>
-        <Link to="" className="link_btn">
+        <Link to="/bookmark" className="link_btn">
           <div className="p-s f-m font-m flex ">
             <span className="aside_content">
               <IoBookmarkSharp />

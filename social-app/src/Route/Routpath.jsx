@@ -1,6 +1,6 @@
 import React from 'react'
 import {Routes,Route} from "react-router-dom";
-import {  Landingpage, Login } from '../Pages';
+import {  Bookmark, Landingpage, Login } from '../Pages';
 import Mockman from "mockman-js";
 import Signup from '../Pages/Auth/Signup/Signup';
 import Home from '../Pages/Home/Home';
@@ -15,6 +15,7 @@ const Routpath = () => {
          <Route path='/login' element={<Login />} />
          <Route path='/signup' element={<Signup />} />
          <Route path='/home' element={<RequireAuth><Home /></RequireAuth>} />
+         <Route paht='/bookmark' element={<RequireAuth><Bookmark /></RequireAuth>} />
          <Route path='/mockman' element={<Mockman />} />
         </Routes>
     </div>

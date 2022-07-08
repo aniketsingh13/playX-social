@@ -70,3 +70,23 @@ export const deleteCommentService = (postId, commentId, token) =>
     headers : {authorization : token}
    })
   }
+
+  export const fetchBookmarkService = (token) =>{
+     return axios.get(`/api/users/bookmark/`,{
+      headers: {authorization: token}
+     })
+  }
+
+  export const addBookmarkService = (postId,token) =>{
+    return axios.post(`/api/users/bookmark/${postId}`,{},{
+      headers: {authorization: token}
+    })
+  }
+
+  export const deleteBookmarkService = (postId,token) => {
+    return axios.post(`/api/users/remove-bookmark/${postId}`,{},{
+      headers: {
+        authorization: token
+      }
+    })
+  }
