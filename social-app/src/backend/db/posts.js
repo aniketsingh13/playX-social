@@ -111,5 +111,125 @@ export const posts = [
     comments: [],
     createdAt: formatDate(),
     updatedAt: formatDate(),
-  }
+  },
+  {
+    _id: uuid(),
+    content:
+    "Algorithm: Word used by programmers when they dont want to explain what they did.",
+    likes: {
+      likeCount: 3,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Aniket Singh",
+    bookmark: [],
+    comments: [],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+    "If you want to be happy, be.",
+    likes: {
+      likeCount: 6,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Aniket Singh",
+    bookmark: [],
+    comments: [],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+    "Opportunities don't happen, you create them.",
+    likes: {
+      likeCount: 8,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Aniket Singh",
+    bookmark: [],
+    comments: [],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+    "You make a choice: continue living your life feeling muddled in this abyss of self-misunderstanding, or you find your identity independent of it. You draw your own box",
+    likes: {
+      likeCount: 9,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Aniket Singh",
+    bookmark: [],
+    comments: [],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+    "It’s not a bug – it’s an undocumented feature.",
+    likes: {
+      likeCount: 20,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Aniket Singh",
+    bookmark: [],
+    comments: [],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+    "Controlling complexity is the essence of computer programming",
+    likes: {
+      likeCount: 40,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Aniket Singh",
+    bookmark: [],
+    comments: [],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+    "Don’t worry if it doesn’t work right.  If everything did, you’d be out of a job",
+    likes: {
+      likeCount: 50,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Aniket Singh",
+    bookmark: [],
+    comments: [],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+    "Programming isn't about what you know; it's about what you can figure out",
+    likes: {
+      likeCount: 60,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Aniket Singh",
+    bookmark: [],
+    comments: [],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
 ];
