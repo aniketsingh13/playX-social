@@ -7,7 +7,9 @@ import { BiLike } from "react-icons/bi";
 import { BsBookmark } from "react-icons/bs";
 import { openModal } from "../../Redux/Feature/PostModalSlice";
 import {
+  addBookmark,
   addComment,
+  deleteBookmark,
   deletePost,
   disLikePost,
   likePost,
@@ -15,11 +17,13 @@ import {
 import { useState } from "react";
 import Comment from "../Comment/Comment";
 import { AiFillLike } from "react-icons/ai";
+import { BsFillBookmarkFill } from "react-icons/bs";
 
 const SinglePost = ({ post }) => {
   const dispatch = useDispatch();
   const { user, token } = useSelector((state) => state.auth);
   const [comment, setComment] = useState("");
+  const { bookmarks } = useSelector((state) => state.posts);
 
   const {
     _id,
@@ -67,6 +71,23 @@ const SinglePost = ({ post }) => {
     }
   };
 
+  const userBookmark = () => {
+    return bookmarks.find((postId) => postId === _id) ? true : false;
+  };
+
+  const bookmarkHandler = async (e) => {
+    e.preventDefault();
+    try {
+      if (userBookmark()) {
+        const response = await dispatch(deleteBookmark({ postId: _id, token }));
+      } else {
+        const response = await dispatch(addBookmark({ postId: _id, token }));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="singlePost_Cont mb-l">
       <div className="header p-s flex">
@@ -97,21 +118,31 @@ const SinglePost = ({ post }) => {
       <div className="body p-xss ml-m">
         <div className="post_content ">{content}</div>
       </div>
-      <div className="post_footer p-xss  flex flex-row ml-l">
-        {userLikes() ? (
-          <div onClick={likeDislikeHandler}>
-            <AiFillLike />
-          </div>
-        ) : (
-          <div onClick={likeDislikeHandler}>
-            <BiLike />
-          </div>
-        )}
-        <span className="ml-s" style={{ color: "black" }}>
-          {likeCount > 0 ? likeCount : 0}
-        </span>
-        <div className="ml-m">
-          <BsBookmark />{" "}
+      <div className=" p-xss  flex flex-row ml-l">
+        <div className="post_footer flex">
+          {userLikes() ? (
+            <div onClick={likeDislikeHandler}>
+              <AiFillLike />
+            </div>
+          ) : (
+            <div onClick={likeDislikeHandler}>
+              <BiLike />
+            </div>
+          )}
+          <span className="ml-s" style={{ color: "black" }}>
+            {likeCount > 0 ? likeCount : 0}
+          </span>
+        </div>
+        <div className="post_footer">
+          {userBookmark() ? (
+            <div className="ml-m" onClick={bookmarkHandler}>
+              <BsFillBookmarkFill />
+            </div>
+          ) : (
+            <div className="ml-m" onClick={bookmarkHandler}>
+              <BsBookmark />{" "}
+            </div>
+          )}
         </div>
       </div>
       <div className="mt-s ml-m mr-m ">

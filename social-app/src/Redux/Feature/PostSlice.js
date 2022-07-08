@@ -236,18 +236,18 @@ const postSlice = createSlice({
       state.postStatus = "fulfilled";
       state.posts = action.payload;
     },
-    [fetchBookmark.fulfilled]: (state,action) => {
+    [fetchBookmark.fulfilled]: (state, action) => {
       state.postStatus = "fulfilled";
-      state.posts = action.payload
+      state.bookmarks = action.payload;
     },
-    [addBookmark.fulfilled] : (state,action) => {
+    [addBookmark.fulfilled]: (state, action) => {
       state.postStatus = "fulfilled";
-      state.posts = action.payload
+      state.bookmarks = action.payload;
     },
-    [deleteBookmark.fulfilled]: (state,action) => {
+    [deleteBookmark.fulfilled]: (state, action) => {
       state.postStatus = "fulfilled";
-      state.posts = action.payload
-    }
+      state.bookmarks = action.payload;
+    },
   },
 });
 

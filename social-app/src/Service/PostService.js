@@ -48,45 +48,63 @@ export const addCommentService = (postId, commentData, token) =>
     }
   );
 
-
-
 export const deleteCommentService = (postId, commentId, token) =>
   axios.post(
-    `/api/comments/delete/${postId}/${commentId}`,{},{
+    `/api/comments/delete/${postId}/${commentId}`,
+    {},
+    {
       headers: {
         authorization: token,
       },
     }
   );
 
-  export const likeService = (postId,token) => {
-     return axios.post(`/api/posts/like/${postId}`,{},{headers: {
-      authorization: token
-     }})
-  }
-
-  export const disLikeService = (postId,token) => {
-   return axios.post(`/api/posts/dislike/${postId}`,{},{
-    headers : {authorization : token}
-   })
-  }
-
-  export const fetchBookmarkService = (token) =>{
-     return axios.get(`/api/users/bookmark/`,{
-      headers: {authorization: token}
-     })
-  }
-
-  export const addBookmarkService = (postId,token) =>{
-    return axios.post(`/api/users/bookmark/${postId}`,{},{
-      headers: {authorization: token}
-    })
-  }
-
-  export const deleteBookmarkService = (postId,token) => {
-    return axios.post(`/api/users/remove-bookmark/${postId}`,{},{
+export const likeService = (postId, token) => {
+  return axios.post(
+    `/api/posts/like/${postId}`,
+    {},
+    {
       headers: {
-        authorization: token
-      }
-    })
-  }
+        authorization: token,
+      },
+    }
+  );
+};
+
+export const disLikeService = (postId, token) => {
+  return axios.post(
+    `/api/posts/dislike/${postId}`,
+    {},
+    {
+      headers: { authorization: token },
+    }
+  );
+};
+
+export const fetchBookmarkService = (token) => {
+  return axios.get(`/api/users/bookmark/`, {
+    headers: { authorization: token },
+  });
+};
+
+export const addBookmarkService = (postId, token) => {
+  return axios.post(
+    `/api/users/bookmark/${postId}`,
+    {},
+    {
+      headers: { authorization: token },
+    }
+  );
+};
+
+export const deleteBookmarkService = (postId, token) => {
+  return axios.post(
+    `/api/users/remove-bookmark/${postId}`,
+    {},
+    {
+      headers: {
+        authorization: token,
+      },
+    }
+  );
+};

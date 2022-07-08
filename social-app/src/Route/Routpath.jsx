@@ -15,7 +15,7 @@ const Routpath = () => {
          <Route path='/login' element={<Login />} />
          <Route path='/signup' element={<Signup />} />
          <Route path='/home' element={<RequireAuth><Home /></RequireAuth>} />
-         <Route paht='/bookmark' element={<RequireAuth><Bookmark /></RequireAuth>} />
+         <Route path='/bookmarks' element={<RequireAuth><Bookmark /></RequireAuth>} />
          <Route path='/mockman' element={<Mockman />} />
         </Routes>
     </div>
