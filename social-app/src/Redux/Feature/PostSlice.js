@@ -17,6 +17,7 @@ import {
 const initialState = {
   posts: [],
   bookmarks: [],
+  postsLoading: false
 };
 
 export const getAllPost = createAsyncThunk(
@@ -179,10 +180,12 @@ const postSlice = createSlice({
   extraReducers: {
     [getAllPost.pending]: (state) => {
       state.postStatus = "pending";
+      state.postsLoading = true
     },
     [getAllPost.fulfilled]: (state, action) => {
       state.postStatus = "fulfilled";
       state.posts = action.payload.reverse();
+      state.postsLoading = false
     },
     [addNewPost.pending]: (state) => {
       state.postStatus = "pending";
