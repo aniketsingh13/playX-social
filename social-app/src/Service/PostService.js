@@ -48,6 +48,13 @@ export const addCommentService = (postId, commentData, token) =>
     }
   );
 
+export const editCommentService = (postId, commentId, commentData, token) =>
+  axios.post(
+    `/api/comments/edit/${postId}/${commentId}`,
+    { commentData },
+    { headers: { authorization: token } }
+  );
+
 export const deleteCommentService = (postId, commentId, token) =>
   axios.post(
     `/api/comments/delete/${postId}/${commentId}`,

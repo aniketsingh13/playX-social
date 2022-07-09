@@ -7,6 +7,7 @@ import {
   deleteCommentService,
   deletePostService,
   disLikeService,
+  editCommentService,
   editPostService,
   fetchBookmarkService,
   getAllPostService,
@@ -95,6 +96,16 @@ export const deleteComment = createAsyncThunk(
     }
   }
 );
+
+export const editComment = createAsyncThunk("posts/editComment",async({postId,commentId,commentData},{rejectWithValue}) =>{
+  try {
+    const token = localStorage.getItem("token");
+    const response = await editCommentService(postId,commentId,commentData,token);
+    return response.data
+  } catch (error) {
+    return rejectWithValue(error)
+  }
+})
 
 export const likePost = createAsyncThunk(
   "posts/likePost",
@@ -227,6 +238,17 @@ const postSlice = createSlice({
     [deleteComment.rejected]: (state, action) => {
       state.postStatus = "rejected";
       state.posts = action.payload;
+    },
+    [editComment.pending]: (state) => {
+      state.postStatus = "pending"
+    },
+    [editComment.fulfilled] : (state,action) => {
+      state.postStatus = "fulfilled";
+      state.posts = action.payload.posts
+    },
+    [editComment.rejected]: (state,action) => {
+      state.postStatus = "rejected";
+      state.posts = action.payload
     },
     [likePost.fulfilled]: (state, action) => {
       state.postStatus = "fulfilled";
