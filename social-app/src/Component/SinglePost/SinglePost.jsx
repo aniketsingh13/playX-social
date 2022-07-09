@@ -18,6 +18,7 @@ import { useState } from "react";
 import Comment from "../Comment/Comment";
 import { AiFillLike } from "react-icons/ai";
 import { BsFillBookmarkFill } from "react-icons/bs";
+import {GrShareOption} from "react-icons/gr"
 
 const SinglePost = ({ post }) => {
   const dispatch = useDispatch();
@@ -87,6 +88,13 @@ const SinglePost = ({ post }) => {
       console.log(error);
     }
   };
+ 
+  const sharelinkHandler = () => {
+    window.navigator.clipboard.writeText(
+      `${window.location.origin}/post/${_id}`
+    )
+  }
+
 
   return (
     <div className="singlePost_Cont mb-l">
@@ -143,6 +151,9 @@ const SinglePost = ({ post }) => {
               <BsBookmark />{" "}
             </div>
           )}
+        </div>
+        <div className="ml-m post_footer" onClick={sharelinkHandler}>
+          <GrShareOption  />
         </div>
       </div>
       <div className="mt-s ml-m mr-m ">
