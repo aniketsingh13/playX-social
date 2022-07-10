@@ -3,6 +3,7 @@ import { authReducer } from "../Feature/AuthSlice";
 import {PostReducer} from "../Feature/PostSlice";
 import  {postModalRedcer } from "../Feature/PostModalSlice";
 import { allUsersReducer } from "../Feature/userSlice";
+import { userProfileReducer } from "../Feature/ProfileSlice";
 
 
 export const store = configureStore({
@@ -10,6 +11,7 @@ export const store = configureStore({
         auth: authReducer,
         posts: PostReducer,
         postModal: postModalRedcer,
-        allUsers: allUsersReducer
+        allUsers: allUsersReducer,
+        userProfile: userProfileReducer
     }
 })

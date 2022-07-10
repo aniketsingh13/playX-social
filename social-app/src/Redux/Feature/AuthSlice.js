@@ -92,7 +92,7 @@ const authSlice = createSlice({
     [updateUser.rejected]: (state,action) => {
       state.authStatus = "error";
       state.error = action.payload
-    }
+    },
   },
 });
 

@@ -17,9 +17,9 @@ import axios from "axios";
  }
 
  export const updateUserService = (token,userData) => {
-     return axios.post("/api/users/edit",{userData},{
-        headers : {
-            authorization: token
-        }
-     })
- };
+    return axios.post("/api/users/edit",{userData},{
+       headers : {
+           authorization: token
+       }
+    })
+};

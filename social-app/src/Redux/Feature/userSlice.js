@@ -3,6 +3,7 @@ import { followUsersService, getAllUsersService, unfollowUserService } from "../
 import { updateUser } from "./AuthSlice";
 
 
+
 const initialState = {
     users: [],
     userLoading: false
