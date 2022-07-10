@@ -24,7 +24,7 @@ const Aside = () => {
             <span className="aside_content ml-s">Home</span>
           </div>
         </Link>
-        <Link to="" className="link_btn">
+        <Link to="/explore" className="link_btn">
           <div className="p-s f-m font-m flex ">
             <span className="aside_content">
               <MdExplore />
@@ -32,7 +32,7 @@ const Aside = () => {
             <span className="aside_content ml-s">Explore</span>
           </div>
         </Link>
-        <Link to="" className="link_btn">
+        <Link to="/bookmarks" className="link_btn">
           <div className="p-s f-m font-m flex ">
             <span className="aside_content">
               <IoBookmarkSharp />

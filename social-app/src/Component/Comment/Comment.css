@@ -16,6 +16,6 @@
     width: 85%;
     border-bottom: 1px solid var(--border-color); 
 }
-.comment_wrightWrong{
+.commentWrightWrong{
     cursor: pointer;
 }

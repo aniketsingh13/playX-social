@@ -88,7 +88,6 @@ export const createPostHandler = function (schema, request) {
       },
       username: user.username,
       comments: [],
-      bookmark: [],
       createdAt: formatDate(),
       updatedAt: formatDate(),
     };

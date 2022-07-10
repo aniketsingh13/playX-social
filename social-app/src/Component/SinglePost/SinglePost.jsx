@@ -6,18 +6,29 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { BiLike } from "react-icons/bi";
 import { BsBookmark } from "react-icons/bs";
 import { openModal } from "../../Redux/Feature/PostModalSlice";
-import { addComment, deletePost } from "../../Redux/Feature/PostSlice";
+import {
+  addBookmark,
+  addComment,
+  deleteBookmark,
+  deletePost,
+  disLikePost,
+  likePost,
+} from "../../Redux/Feature/PostSlice";
 import { useState } from "react";
 import Comment from "../Comment/Comment";
+import { AiFillLike } from "react-icons/ai";
+import { BsFillBookmarkFill } from "react-icons/bs";
+import {GrShareOption} from "react-icons/gr"
 
 const SinglePost = ({ post }) => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const { user, token } = useSelector((state) => state.auth);
   const [comment, setComment] = useState("");
+  const { bookmarks } = useSelector((state) => state.posts);
 
   const {
     _id,
-    likes: { likeCount },
+    likes: { likeCount, likedBy },
     username,
     content,
     createdAt,
@@ -41,6 +52,49 @@ const SinglePost = ({ post }) => {
     dispatch(addComment({ postId: _id, commentData: comment }));
     setComment("");
   };
+
+  const userLikes = () => {
+    return likedBy.find((userLiked) => user.username === userLiked.username)
+      ? true
+      : false;
+  };
+
+  const likeDislikeHandler = async (e) => {
+    e.preventDefault();
+    try {
+      if (userLikes()) {
+        const response = await dispatch(disLikePost({ postId: _id, token }));
+      } else {
+        const response = await dispatch(likePost({ postId: _id, token }));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const userBookmark = () => {
+    return bookmarks.find((postId) => postId === _id) ? true : false;
+  };
+
+  const bookmarkHandler = async (e) => {
+    e.preventDefault();
+    try {
+      if (userBookmark()) {
+        const response = await dispatch(deleteBookmark({ postId: _id, token }));
+      } else {
+        const response = await dispatch(addBookmark({ postId: _id, token }));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+ 
+  const sharelinkHandler = () => {
+    window.navigator.clipboard.writeText(
+      `${window.location.origin}/post/${_id}`
+    )
+  }
+
 
   return (
     <div className="singlePost_Cont mb-l">
@@ -72,12 +126,34 @@ const SinglePost = ({ post }) => {
       <div className="body p-xss ml-m">
         <div className="post_content ">{content}</div>
       </div>
-      <div className="post_footer p-xss  flex flex-row ml-l">
-        <div className="flex ">
-          <BiLike /> {likeCount}
+      <div className=" p-xss  flex flex-row ml-l">
+        <div className="post_footer flex">
+          {userLikes() ? (
+            <div onClick={likeDislikeHandler}>
+              <AiFillLike />
+            </div>
+          ) : (
+            <div onClick={likeDislikeHandler}>
+              <BiLike />
+            </div>
+          )}
+          <span className="ml-s" style={{ color: "black" }}>
+            {likeCount > 0 ? likeCount : 0}
+          </span>
         </div>
-        <div className="ml-m">
-          <BsBookmark />{" "}
+        <div className="post_footer">
+          {userBookmark() ? (
+            <div className="ml-m" onClick={bookmarkHandler}>
+              <BsFillBookmarkFill />
+            </div>
+          ) : (
+            <div className="ml-m" onClick={bookmarkHandler}>
+              <BsBookmark />{" "}
+            </div>
+          )}
+        </div>
+        <div className="ml-m post_footer" onClick={sharelinkHandler}>
+          <GrShareOption  />
         </div>
       </div>
       <div className="mt-s ml-m mr-m ">

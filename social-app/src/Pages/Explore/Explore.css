@@ -1,0 +1,28 @@
+
+.explore_Navbar{
+    z-index: 1;
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    box-shadow:  0 1px 3px 0 var(--boxShadow-color);
+}
+.exploreCenter_container{
+    margin-left: 3rem;
+    margin-right: 2rem;
+}
+.explore_aside{
+    flex: 1;
+}
+.explore_main{
+    flex: 3
+}
+.explore_right{
+    flex: 1
+}
+.explore_post{
+    margin-left: 6rem;
+    margin-right: 6rem;
+}
+.explore_loading{
+    text-align: center;
+}
