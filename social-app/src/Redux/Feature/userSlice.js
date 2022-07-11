@@ -19,7 +19,7 @@ export const getAllUsers = createAsyncThunk("allUsers/getAllUsers",async(rejectW
     }
 })
 
-export const followUsers = createAsyncThunk("allUsers/follwoUsers",async({token,userId,dispatch},{rejectWithValue}) => {
+export const followUsers = createAsyncThunk("allUsers/followUsers",async({token,userId,dispatch},{rejectWithValue}) => {
      try {
         const {data} = await followUsersService(token,userId);
         dispatch(updateUser({token: token,userData: data.user}));

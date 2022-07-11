@@ -9,4 +9,8 @@
    border: 1px solid var(--border-color);
    width: 3rem;
    height: 2rem;
+   color: white;
+}
+.followHandlerName_Color{
+  color: var(--secondary-color);
 }

@@ -1,0 +1,67 @@
+.Profile_navbar{
+    z-index: 1;
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    box-shadow:  0 1px 3px 0 var(--boxShadow-color);
+}
+.profile_centerContainer{
+    margin-left: 3rem;
+    margin-right: 2rem;
+}
+.profile_aside{
+    flex: 1
+}
+.profile_main{
+    flex: 3
+}
+.profile_right{
+    flex: 1;
+}
+.profile_post{
+    margin-left: 6rem;
+    margin-right: 6rem;
+}
+.user_Profile{
+    border-radius: 10px;
+    background-color: white;
+}
+.profile_img{
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+}
+.profile_name{
+    font-size: 1.3rem;
+}
+.profile_information{
+    justify-content: space-between;
+    width: 85%;
+}
+.profile_editbtn{
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    background-color: white;
+}
+.profile_editbtn:hover{
+    background-color: var(--border-color);
+}
+.profile_followBtn{
+    background-color: var(--primary-color-hover);
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid var(--primary-color-hover);
+}
+
+.profile_bio{
+    color: #6B7280;
+}
+
+
+.profile_link{
+    color: var(--primary-color-hover);
+    font-size: .8rem;
+    font-weight: 600;
+}
