@@ -45,9 +45,9 @@ const Profile = () => {
     })();
   }, [userPosts]);
 
-  const checkFollowed = () => {
-    return followers?.some((listUser) => listUser.username === username);
-  };
+  const checkFollowed = () =>  followers?.some((listUser) => listUser.username === user.username);
+  
+ 
 
   const followUnfollowhandler = async () => {
     try {

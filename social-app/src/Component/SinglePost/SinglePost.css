@@ -12,6 +12,7 @@
 }
 .profile_name{
     color: var(--secondary-color);
+    cursor: pointer;
 }
 .postEditDelete{
     cursor: pointer;
