@@ -19,12 +19,14 @@ import Comment from "../Comment/Comment";
 import { AiFillLike } from "react-icons/ai";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import {GrShareOption} from "react-icons/gr"
+import { useNavigate } from "react-router-dom";
 
 const SinglePost = ({ post }) => {
   const dispatch = useDispatch();
   const { user, token } = useSelector((state) => state.auth);
   const [comment, setComment] = useState("");
   const { bookmarks } = useSelector((state) => state.posts);
+  const navigate = useNavigate()
 
   const {
     _id,
@@ -94,7 +96,10 @@ const SinglePost = ({ post }) => {
       `${window.location.origin}/post/${_id}`
     )
   }
-
+  
+  const goToUserhandler = () => {
+    navigate(`/profile/${username}`)
+  }
 
   return (
     <div className="singlePost_Cont mb-l">
@@ -105,7 +110,7 @@ const SinglePost = ({ post }) => {
             src={`https://ui-avatars.com/api/name=${username}?background=1d9af1&color=fff`}
             alt="profile-avatar"
           />
-          <div className="flex flex-column p-xss">
+          <div className="flex flex-column p-xss" onClick={(e) => {e.preventDefault();goToUserhandler(username)}}>
             <span className="mb-s profile_name font-l">{username}</span>
             <p className="f-ss">{`${year}/${
               +month + 1

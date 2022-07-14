@@ -6,12 +6,13 @@ import { MdExplore } from "react-icons/md";
 import { IoBookmarkSharp } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { RiLogoutBoxRLine } from "react-icons/ri";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../Redux/Feature/AuthSlice";
 import { openModal } from "../../Redux/Feature/PostModalSlice";
 
 const Aside = () => {
   const dispatch = useDispatch();
+  const {user} = useSelector((state) => state.auth)
 
   return (
     <div >
@@ -40,7 +41,7 @@ const Aside = () => {
             <span className="aside_content ml-s">Bookmarks</span>
           </div>
         </Link>
-        <Link to="" className="link_btn">
+        <Link to={`/profile/${user.username}`} className="link_btn">
           <div className="p-s f-m font-m flex ">
             <span className="aside_content">
               <CgProfile />

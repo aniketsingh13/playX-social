@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { followUsers, getAllUsers } from "../../Redux/Feature/userSlice";
+import { Link } from "react-router-dom";
 import "./RightSidebar.css";
 
 const RightSidebar = () => {
@@ -68,7 +69,12 @@ const RightSidebar = () => {
                 alt="profile-avatar"
               />
               <p className="p-xss font-l">
-                {followUser.firstName} {followUser.lastName}
+                <Link
+                  to={`/profile/${followUser.username}`}
+                  className="followHandlerName_Color"
+                >
+                  {followUser.firstName} {followUser.lastName}
+                </Link>
               </p>
               <button
                 className="follow_btn "
