@@ -1,6 +1,6 @@
 import React, { Profiler } from 'react'
 import {Routes,Route} from "react-router-dom";
-import {  Bookmark, Explore, Landingpage, Login, Profile } from '../Pages';
+import {  Bookmark, Explore, Landingpage, Login, NotFound, Profile } from '../Pages';
 import Mockman from "mockman-js";
 import Signup from '../Pages/Auth/Signup/Signup';
 import Home from '../Pages/Home/Home';
@@ -18,6 +18,7 @@ const Routpath = () => {
          <Route path='/bookmarks' element={<RequireAuth><Bookmark /></RequireAuth>} />
          <Route path='/explore' element={<RequireAuth><Explore /></RequireAuth>} />
          <Route path='/profile/:username' element={<RequireAuth><Profile /></RequireAuth>} />
+         <Route path="*" element={<NotFound />}  />
          <Route path='/mockman' element={<Mockman />} />
         </Routes>
     </div>
