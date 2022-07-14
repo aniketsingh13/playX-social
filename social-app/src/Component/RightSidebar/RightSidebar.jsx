@@ -69,8 +69,11 @@ const RightSidebar = () => {
                 alt="profile-avatar"
               />
               <p className="p-xss font-l">
-                <Link to={`/profile/${followUser.username}`} className="followHandlerName_Color">
-                {followUser.firstName} {followUser.lastName}
+                <Link
+                  to={`/profile/${followUser.username}`}
+                  className="followHandlerName_Color"
+                >
+                  {followUser.firstName} {followUser.lastName}
                 </Link>
               </p>
               <button

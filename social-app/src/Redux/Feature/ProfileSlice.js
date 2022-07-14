@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { updateUserService } from "../../Service/AuthService";
 import {
   fetchUserPostService,
   fetchUserProfileService,
@@ -15,7 +16,7 @@ export const fetchUserProfile = createAsyncThunk(
     try {
       const { data } = await fetchUserProfileService(username);
       const { user } = data;
-      console.log(user)
+      console.log(user);
       return user;
     } catch (error) {
       return rejectWithValue(error);
@@ -35,6 +36,18 @@ export const fetchUserPost = createAsyncThunk(
     }
   }
 );
+export const updateUser = createAsyncThunk(
+  "userProfile/updateUser",
+  async ({ token, userData }, { rejectWithValue }) => {
+    try {
+      const { data } = await updateUserService(token, userData);
+      const { user } = data;
+      return user;
+    } catch (error) {
+      return rejectWithValue(error.response);
+    }
+  }
+);
 
 const ProfileSlice = createSlice({
   name: "userProfile",
@@ -46,6 +59,9 @@ const ProfileSlice = createSlice({
     },
     [fetchUserPost.fulfilled]: (state, action) => {
       state.userPosts = action.payload;
+    },
+    [updateUser.fulfilled]: (state, action) => {
+      state.userProfile = action.payload;
     },
   },
 });

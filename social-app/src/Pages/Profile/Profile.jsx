@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { ProfileModal } from "../../Component";
 import AddPostModal from "../../Component/AddPostModal/AddPostModal";
 import Aside from "../../Component/Aside/Aside";
 import Navbar from "../../Component/Navbar/Navbar";
 import RightSidebar from "../../Component/RightSidebar/RightSidebar";
 import SinglePost from "../../Component/SinglePost/SinglePost";
+import { show_profileModal } from "../../Redux/Feature/ProfileModalSlice";
 import {
   fetchUserPost,
   fetchUserProfile,
@@ -45,19 +47,23 @@ const Profile = () => {
     })();
   }, [userPosts]);
 
-  const checkFollowed = () =>  followers?.some((listUser) => listUser.username === user.username);
-  
- 
+  const checkFollowed = () =>
+    followers?.some((listUser) => listUser.username === user.username);
 
   const followUnfollowhandler = async () => {
     try {
-      if( checkFollowed()){
-         await dispatch(unfollowUser({ token, userId: _id, dispatch }))}
-         else{
-        await dispatch(followUsers({ token, userId: _id, dispatch })); }
+      if (checkFollowed()) {
+        await dispatch(unfollowUser({ token, userId: _id, dispatch }));
+      } else {
+        await dispatch(followUsers({ token, userId: _id, dispatch }));
+      }
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const editProfileHandler = () => {
+    dispatch(show_profileModal());
   };
 
   return (
@@ -94,7 +100,12 @@ const Profile = () => {
                 </div>
                 <div>
                   {user.username === username && (
-                    <button className="p-xs profile_editbtn">Edit</button>
+                    <button
+                      className="p-xs profile_editbtn"
+                      onClick={editProfileHandler}
+                    >
+                      Edit
+                    </button>
                   )}
                   {user.username !== username && (
                     <button
@@ -115,6 +126,7 @@ const Profile = () => {
             </div>
           </div>
           <AddPostModal />
+          <ProfileModal />
         </div>
         <div className="profile_right">
           <RightSidebar />

@@ -4,6 +4,8 @@ import {PostReducer} from "../Feature/PostSlice";
 import  {postModalRedcer } from "../Feature/PostModalSlice";
 import { allUsersReducer } from "../Feature/userSlice";
 import { userProfileReducer } from "../Feature/ProfileSlice";
+import { profileEditModalReducer } from "../Feature/ProfileModalSlice";
+
 
 
 export const store = configureStore({
@@ -12,6 +14,7 @@ export const store = configureStore({
         posts: PostReducer,
         postModal: postModalRedcer,
         allUsers: allUsersReducer,
-        userProfile: userProfileReducer
+        userProfile: userProfileReducer,
+        profileEditModal: profileEditModalReducer
     }
 })
