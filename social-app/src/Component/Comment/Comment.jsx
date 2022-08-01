@@ -6,6 +6,7 @@ import { RiDeleteBin7Line } from "react-icons/ri";
 import { deleteComment, editComment } from "../../Redux/Feature/PostSlice";
 import {FaRegEdit} from "react-icons/fa"
 import {AiOutlineClose,AiOutlineCheck} from "react-icons/ai"
+import { useToast } from "../../Hooks/useToast";
 
 const Comment = ({ comment, postId }) => {
   const { user } = useSelector((state) => state.auth);
@@ -13,6 +14,7 @@ const Comment = ({ comment, postId }) => {
   const { users } = useSelector((state) => state.allUsers);
   const [inputComment, setInputComment] = useState(comment.text);
   const [isEdit,setIsEdit] = useState(false);
+  const {showToast} = useToast();
 
   const userInfo =
     users &&
@@ -21,6 +23,7 @@ const Comment = ({ comment, postId }) => {
   const editHandler = () => {
     setIsEdit(false)
     dispatch(editComment({postId: postId,commentId: comment._id,commentData:inputComment }))
+    showToast("success","comment edited successfully")
   }
 
   return (
@@ -40,10 +43,12 @@ const Comment = ({ comment, postId }) => {
                   <FaRegEdit />
                 </span>
                 <span
-                  onClick={() =>
+                  onClick={() =>{
                     dispatch(
                       deleteComment({ postId: postId, commentId: comment._id })
                     )
+                  showToast("success","comment deleted")
+                  }
                   }
                 >
                   <RiDeleteBin7Line />

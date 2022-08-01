@@ -20,13 +20,16 @@ import { AiFillLike } from "react-icons/ai";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import {GrShareOption} from "react-icons/gr"
 import { useNavigate } from "react-router-dom";
+import { useToast } from "../../Hooks/useToast";
+
 
 const SinglePost = ({ post }) => {
   const dispatch = useDispatch();
   const { user, token } = useSelector((state) => state.auth);
   const [comment, setComment] = useState("");
   const { bookmarks } = useSelector((state) => state.posts);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const {showToast} = useToast()
 
   const {
     _id,
@@ -53,6 +56,7 @@ const SinglePost = ({ post }) => {
   const commentHandler = () => {
     dispatch(addComment({ postId: _id, commentData: comment }));
     setComment("");
+    showToast("success","comment added to the post")
   };
 
   const userLikes = () => {
@@ -66,8 +70,10 @@ const SinglePost = ({ post }) => {
     try {
       if (userLikes()) {
         const response = await dispatch(disLikePost({ postId: _id, token }));
+        showToast("success","post removed from like")
       } else {
         const response = await dispatch(likePost({ postId: _id, token }));
+        showToast("success","post liked")
       }
     } catch (error) {
       console.log(error);
@@ -83,8 +89,10 @@ const SinglePost = ({ post }) => {
     try {
       if (userBookmark()) {
         const response = await dispatch(deleteBookmark({ postId: _id, token }));
+        showToast("success","post remove from bookmark")
       } else {
         const response = await dispatch(addBookmark({ postId: _id, token }));
+        showToast("success","post added to bookmark")
       }
     } catch (error) {
       console.log(error);
@@ -95,6 +103,7 @@ const SinglePost = ({ post }) => {
     window.navigator.clipboard.writeText(
       `${window.location.origin}/post/${_id}`
     )
+    showToast("success","url copied")
   }
   
   const goToUserhandler = () => {
@@ -122,7 +131,8 @@ const SinglePost = ({ post }) => {
             <div className="mr-s" onClick={() => editHandler()}>
               <FiEdit />
             </div>
-            <div onClick={() => dispatch(deletePost(_id))}>
+            <div onClick={() => {dispatch(deletePost(_id));
+              showToast("success","post deleted")}}>
               <RiDeleteBinLine />
             </div>
           </div>

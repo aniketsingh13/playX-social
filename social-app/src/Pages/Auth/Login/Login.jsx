@@ -3,6 +3,8 @@ import "./Login.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../Redux/Feature/AuthSlice";
+import { useToast } from "../../../Hooks/useToast";
+import { useDocumentTitle } from "../../../Hooks/useDocumentTitle";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
@@ -14,6 +16,8 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useSelector((state) => state.auth);
+  const {showToast} = useToast();
+  useDocumentTitle("Login")
 
   useEffect(() => {
     if (user) {
@@ -29,7 +33,7 @@ const Login = () => {
         dispatch(loginUser(users));
       })()
     }
-    
+    showToast("success","Logged in!")
   };
   const guestHandler = () => {
     setUsers((users) => ({

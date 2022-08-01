@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { followUsers, getAllUsers } from "../../Redux/Feature/userSlice";
 import { Link } from "react-router-dom";
 import "./RightSidebar.css";
+import { useToast } from "../../Hooks/useToast";
 
 const RightSidebar = () => {
   const dispatch = useDispatch();
   const { user, token } = useSelector((state) => state.auth);
   const { users, userLoading } = useSelector((state) => state.allUsers);
   const [followerList, setFollowerList] = useState([]);
+  const {showToast}= useToast()
 
   useEffect(() => {
     (async () => {
@@ -41,11 +43,12 @@ const RightSidebar = () => {
       const response = await dispatch(
         followUsers({ token, userId: followId, dispatch })
       );
+      showToast("success","follow user")
       if (response.error) {
         throw new Error(response.error);
       }
     } catch (error) {
-      console.log(error);
+      showToast("error","something went wrong")
     }
   };
 

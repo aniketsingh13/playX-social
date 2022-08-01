@@ -3,6 +3,8 @@ import "./Signup.css";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUpUser } from '../../../Redux/Feature/AuthSlice';
+import { useToast } from '../../../Hooks/useToast';
+import { useDocumentTitle } from '../../../Hooks/useDocumentTitle';
 
 const Signup = () => {
   const [showPass,setShowPass] = useState(false);
@@ -15,6 +17,8 @@ const Signup = () => {
   const dispatch = useDispatch();
   const {user} = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const {showToast} = useToast();
+  useDocumentTitle("Singup")
 
   const signupHandler = (e) =>{
      e.preventDefault();
@@ -24,6 +28,7 @@ const Signup = () => {
      dispatch(signUpUser(Signup))
        })()
      }
+     showToast("success","sucessfully signed in!")
   }
 
 

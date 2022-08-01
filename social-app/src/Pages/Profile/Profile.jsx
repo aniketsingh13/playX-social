@@ -7,6 +7,8 @@ import Aside from "../../Component/Aside/Aside";
 import Navbar from "../../Component/Navbar/Navbar";
 import RightSidebar from "../../Component/RightSidebar/RightSidebar";
 import SinglePost from "../../Component/SinglePost/SinglePost";
+import { useDocumentTitle } from "../../Hooks/useDocumentTitle";
+import { useToast } from "../../Hooks/useToast";
 import { show_profileModal } from "../../Redux/Feature/ProfileModalSlice";
 import {
   fetchUserPost,
@@ -21,6 +23,9 @@ const Profile = () => {
   const { users } = useSelector((state) => state.allUsers);
   const { username } = useParams();
   const dispatch = useDispatch();
+  const {showToast} = useToast();
+  useDocumentTitle("Profile")
+
 
   useEffect(() => {
     (async () => {
@@ -54,11 +59,13 @@ const Profile = () => {
     try {
       if (checkFollowed()) {
         await dispatch(unfollowUser({ token, userId: _id, dispatch }));
+        showToast("success","unfollow user")
       } else {
         await dispatch(followUsers({ token, userId: _id, dispatch }));
+        showToast("success","follow user")
       }
     } catch (error) {
-      console.log(error);
+      showToast("error","something went wrong")
     }
   };
 

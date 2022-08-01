@@ -9,12 +9,14 @@ import Aside from "../../Component/Aside/Aside";
 import RightSidebar from "../../Component/RightSidebar/RightSidebar";
 import AddPostModal from "../../Component/AddPostModal/AddPostModal";
 import SinglePost from "../../Component/SinglePost/SinglePost";
+import { useDocumentTitle } from "../../Hooks/useDocumentTitle";
 
 const Explore = () => {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
   const { posts, postsLoading } = useSelector((state) => state.posts);
   const [explorePost, setExpolorePost] = useState([]);
+  useDocumentTitle("Explore")
 
   useEffect(() => {
     (async () => {
