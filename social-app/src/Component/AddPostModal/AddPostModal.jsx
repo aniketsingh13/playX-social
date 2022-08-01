@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { addNewPost, editPost } from "../../Redux/Feature/PostSlice";
 import { closeModal } from "../../Redux/Feature/PostModalSlice";
+import { useToast } from "../../Hooks/useToast";
 
 const AddPostModal = () => {
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
   const { postModal, postInfo } = useSelector((state) => state.postModal);
+  const {showToast} = useToast()
 
 
   const closeModalHandler = () => {
@@ -17,7 +19,13 @@ const AddPostModal = () => {
   }
    
   const postHandler = () => {
-    postInfo ? dispatch(editPost({...postInfo,content: input})) : dispatch(addNewPost({content: input}));
+    if(postInfo){
+      dispatch(editPost({...postInfo,content: input}));
+      showToast("success","post edited")
+    }else{
+      dispatch(addNewPost({content: input}))
+      showToast("success","added new post")
+    }
     setInput('');
     dispatch(closeModal())
   }

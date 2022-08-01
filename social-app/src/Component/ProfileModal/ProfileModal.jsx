@@ -6,12 +6,14 @@ import { hide_profileModal } from "../../Redux/Feature/ProfileModalSlice";
 import { useState } from "react";
 import { updateUser } from "../../Redux/Feature/ProfileSlice";
 import { editUpdateUser } from "../../Redux/Feature/AuthSlice";
+import { useToast } from "../../Hooks/useToast";
 
 const ProfileModal = () => {
   const { profileModal } = useSelector((state) => state.profileEditModal);
   const { token, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const { username, firstName, lastName, userBio, portfolio } = user;
+  const {showToast} = useToast()
 
   const [profileDetails, setProfileDetails] = useState({
     firstName: firstName,
@@ -31,8 +33,9 @@ const ProfileModal = () => {
       );
       dispatch(hide_profileModal());
       dispatch(editUpdateUser(response.payload));
+      showToast("success","profile edited successfully")
     } catch (error) {
-      console.log(error);
+      showToast("error","something went wrong")
     }
   };
 

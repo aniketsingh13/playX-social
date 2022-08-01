@@ -9,10 +9,12 @@ import { RiLogoutBoxRLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../Redux/Feature/AuthSlice";
 import { openModal } from "../../Redux/Feature/PostModalSlice";
+import { useToast } from "../../Hooks/useToast";
 
 const Aside = () => {
   const dispatch = useDispatch();
-  const {user} = useSelector((state) => state.auth)
+  const {user} = useSelector((state) => state.auth);
+  const {showToast} = useToast()
 
   return (
     <div >
@@ -55,7 +57,9 @@ const Aside = () => {
           </span>
           <span
             className="aside_content ml-s"
-            onClick={() => dispatch(logoutUser())}
+            onClick={() => {dispatch(logoutUser())
+              showToast("success","Logged out!")
+            }}
           >
             Logout
           </span>
