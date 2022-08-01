@@ -6,6 +6,7 @@ import Aside from "../../Component/Aside/Aside";
 import Navbar from "../../Component/Navbar/Navbar";
 import RightSidebar from "../../Component/RightSidebar/RightSidebar";
 import SinglePost from "../../Component/SinglePost/SinglePost";
+import { useDocumentTitle } from "../../Hooks/useDocumentTitle";
 import { fetchBookmark } from "../../Redux/Feature/PostSlice";
 import "./Bookmark.css";
 
@@ -13,6 +14,7 @@ const Bookmark = () => {
   const { token } = useSelector((state) => state.auth);
   const { posts, bookmarks } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
+  useDocumentTitle("Bookmark")
 
   useEffect(() => {
     (async () => {

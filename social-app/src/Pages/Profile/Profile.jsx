@@ -7,6 +7,7 @@ import Aside from "../../Component/Aside/Aside";
 import Navbar from "../../Component/Navbar/Navbar";
 import RightSidebar from "../../Component/RightSidebar/RightSidebar";
 import SinglePost from "../../Component/SinglePost/SinglePost";
+import { useDocumentTitle } from "../../Hooks/useDocumentTitle";
 import { useToast } from "../../Hooks/useToast";
 import { show_profileModal } from "../../Redux/Feature/ProfileModalSlice";
 import {
@@ -22,7 +23,8 @@ const Profile = () => {
   const { users } = useSelector((state) => state.allUsers);
   const { username } = useParams();
   const dispatch = useDispatch();
-  const {showToast} = useToast()
+  const {showToast} = useToast();
+  useDocumentTitle("Profile")
 
 
   useEffect(() => {

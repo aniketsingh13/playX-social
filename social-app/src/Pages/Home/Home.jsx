@@ -6,9 +6,11 @@ import Aside from '../../Component/Aside/Aside';
 import Main from '../../Component/Main/Main';
 import AddPostModal from '../../Component/AddPostModal/AddPostModal';
 import RightSidebar from '../../Component/RightSidebar/RightSidebar';
+import { useDocumentTitle } from '../../Hooks/useDocumentTitle';
 
 
 const Home = () => {
+  useDocumentTitle("Home")
   return (
     <div className='home_cont'>
       <div className='home_navbar'>

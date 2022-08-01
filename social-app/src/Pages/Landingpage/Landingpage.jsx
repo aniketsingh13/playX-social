@@ -1,8 +1,10 @@
 import React from "react";
 import "./Landingpage.css";
 import { Link } from "react-router-dom";
+import { useDocumentTitle } from "../../Hooks/useDocumentTitle";
 
 const Landingpage = () => {
+  useDocumentTitle("Social media app")
   return (
     <div className="main_conatiner">
       <div className=" flex flex-center p-xxl">
