@@ -112,6 +112,7 @@ const Signup = () => {
               id="remember"
               name="remember"
               className="Signup-checkbox"
+              required
             />
             <label className="Signup-text font-l f-s pl-s">
               I accept all term & conditions
