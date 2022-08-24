@@ -70,7 +70,7 @@ const Signup = () => {
             />
           </div>
           <div className=" mt-l ">
-            <label className="Signup-email-label font-s">Email Address</label>
+            <label className="Signup-email-label font-s">Username</label>
             <input
               type="text"
               className="f-s mt-s "

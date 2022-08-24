@@ -16,6 +16,7 @@ export const users = [
     portfolio: "https://adarshbalika.netlify.app/",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    image: "https://res.cloudinary.com/aniket-singh/image/upload/v1660376493/Images/making-of-a-2d-animation-for-chilledcow-20180706052709_ntnefw.jpg"
   },
   {
     _id: uuid(),
@@ -27,6 +28,7 @@ export const users = [
     portfolio: "https://shubhamkumar-portfolio.netlify.app/",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    image: "https://res.cloudinary.com/aniket-singh/image/upload/v1660376952/Images/IMG_0234_twb5ar.jpg"
   },
   {
     _id: uuid(),
@@ -38,6 +40,7 @@ export const users = [
     portfolio: "https://aniketsingh-portfolio.netlify.app/",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    image: "https://res.cloudinary.com/aniket-singh/image/upload/v1660377238/Images/IMG_0204_d6msit.jpg"
   },
   {
     _id: uuid(),
@@ -49,6 +52,7 @@ export const users = [
     portfolio: "https://www.facebook.com/",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    image: "https://res.cloudinary.com/aniket-singh/image/upload/v1660377554/Images/0037bf05ccb0bf488fb92c7ceb756352_io4ruc.jpg"
   },
   {
     _id: uuid(),
@@ -60,5 +64,6 @@ export const users = [
     portfolio: "https://en.wikipedia.org/wiki/Johnny_Depp",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    image: "https://res.cloudinary.com/aniket-singh/image/upload/v1660377586/Images/download_bed4en.jpg"
   },
 ];

@@ -38,6 +38,7 @@ const SinglePost = ({ post }) => {
     content,
     createdAt,
     comments,
+    image
   } = post;
 
   const date = new Date(createdAt);
@@ -116,9 +117,9 @@ const SinglePost = ({ post }) => {
         <div className="flex flex-row ">
           <img
             className="proileImg"
-            src={`https://ui-avatars.com/api/name=${username}?background=1d9af1&color=fff`}
-            alt="profile-avatar"
-          />
+            src={user.username === username ? user?.image : image }
+            alt={user.username}
+          /> 
           <div className="flex flex-column p-xss" onClick={(e) => {e.preventDefault();goToUserhandler(username)}}>
             <span className="mb-s profile_name font-l">{username}</span>
             <p className="f-ss">{`${year}/${

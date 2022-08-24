@@ -39,7 +39,7 @@ const Profile = () => {
     })();
   }, [users, username]);
 
-  const { _id, firstName, lastName, followers, following, userBio, portfolio } =
+  const { _id, firstName, lastName, followers, following, userBio, portfolio,image } =
     userProfile;
 
   useEffect(() => {
@@ -86,8 +86,8 @@ const Profile = () => {
           <div className="profile_post">
             <div className="user_Profile flex ">
               <img
-                src={`https://ui-avatars.com/api/name=${username}?background=1d9af1&color=fff`}
-                alt="profile"
+                src={image}
+                alt={username}
                 className="profile_img ml-s mt-s"
               />
               <div className="p-s flex profile_information">

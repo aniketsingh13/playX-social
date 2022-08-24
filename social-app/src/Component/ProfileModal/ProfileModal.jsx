@@ -12,7 +12,7 @@ const ProfileModal = () => {
   const { profileModal } = useSelector((state) => state.profileEditModal);
   const { token, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const { username, firstName, lastName, userBio, portfolio } = user;
+  const { username, firstName, lastName, userBio, portfolio,image } = user;
   const {showToast} = useToast()
 
   const [profileDetails, setProfileDetails] = useState({

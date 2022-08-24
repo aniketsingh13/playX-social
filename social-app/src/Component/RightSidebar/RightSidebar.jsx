@@ -68,8 +68,8 @@ const RightSidebar = () => {
             <div className="flex">
               <img
                 className="proileImg"
-                src={`https://ui-avatars.com/api/name=${followUser.username}?background=1d9af1&color=fff`}
-                alt="profile-avatar"
+                src={followUser.image}
+                alt={followUser.username}
               />
               <p className="p-xss font-l">
                 <Link
