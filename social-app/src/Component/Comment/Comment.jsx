@@ -31,7 +31,7 @@ const Comment = ({ comment, postId }) => {
       <div className="flex">
         <img
           className="SinglePost_commentImg"
-          src={`https://ui-avatars.com/api/name=${userInfo.username}?background=1d9af1&color=fff`}
+          src={user.image}
           alt="profile-avatar"
         />
         <div className="ml-s comment_content">
