@@ -11,10 +11,10 @@ const Navbar = () => {
       <Link to="/home">
         <h3 className="f-m font-l profile_heading ml-s mt-m">Social Games</h3>
       </Link>
-      <Link to="" className="mr-s">
+      <Link to={`/profile/${user.username}`} className="mr-s">
         <img
           className="prof_img"
-          src={`https://ui-avatars.com/api/name=${user?.firstName}${user?.lastName}?background=1d9af1&color=fff`}
+          src={user.image}
           alt="profile-avatar"
         />
       </Link>
